@@ -1,0 +1,17 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "Protractor Automation Framework",
+  "main": "config.js",
+  "dependencies": {
+    "protractor": "^5.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "pretest": "npm run tsc",
+    "test": "protractor ConvertedJSFiles/config.js",
+    "tsc": "tsc"
+  },
+  "author": "Raja Gone",
+  "license": "private"
+}
