@@ -45,7 +45,7 @@ describe('angularjs homepage todo list', function () {
       await guidePage.selectNextDay(episodeName);  
     } while(!isTelecasted);
    
-    schedule = await guidePage.getScheduleDetails(episodeName);
+    schedule = await guidePage.getFullScheduleDetails(episodeName);
     console.log('Next "'+episodeName+'" episode telecasted on "'+channelName+ '" @ '+schedule[0]+' on '+schedule[1]);
     expect(schedule).not.toBe('');
   });
@@ -63,7 +63,7 @@ describe('angularjs homepage todo list', function () {
          break;
       await guidePage.selectNextDay(episodeName);  
      } while(!isTelecasted);
-     schedule = await guidePage.getScheduleDetails(episodeName);
+     schedule = await guidePage.getFullScheduleDetails(episodeName);
      console.log('Next "'+episodeName+'" episode telecasted on "'+channelName+ '" @ '+schedule[0]+' on '+schedule[1]);
      expect(schedule).not.toBe('');
   });

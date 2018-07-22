@@ -14,17 +14,11 @@ export class GuidePage  extends BasePage {
     public async isEpisodeTelecastedToday(channelName:string,episodeName:string):Promise<boolean>{
         var isEpisodeFound = false;
         var channelLoc = this.getChannelLocator(channelName);
-        var schedultTitlesLocator = 'locator//h2[@class="schedule__title"]';
-        schedultTitlesLocator = schedultTitlesLocator.replace('locator',channelLoc);
+        var buildEpisodeLocator = channelLoc + '//h2[.="'+episodeName+'"]';
 
-        await element.all(by.xpath(schedultTitlesLocator)).getText().then(function(titles) {
-            for(var i = 0, size = titles.length; i < size ; i++){
-              var title = titles[i];
-              if(title == episodeName){
-                  isEpisodeFound = true;
-                  break;
-            }
-           };
+        await element(by.xpath(buildEpisodeLocator)).isPresent().then(function(value){
+          if(value)
+            isEpisodeFound = true;
         });
        return isEpisodeFound;
     }
@@ -33,7 +27,7 @@ export class GuidePage  extends BasePage {
          await this.nextDay.click();
     }
 
-    public async getScheduleDetails(episodeName:string):Promise<string[]>{
+    public async getFullScheduleDetails(episodeName:string):Promise<string[]>{
         var list=Array(2);
         list[0] = await this.getEpisodeTime(episodeName);
         list[1] = await this.getEpisodeDay(episodeName);
@@ -64,13 +58,10 @@ export class GuidePage  extends BasePage {
 
     public async getEpisodeDay(episodeName:string):Promise<string>{
         var epDay;
-        var loc = '//h2[.="name"]/following-sibling::*[1]';
-        loc = loc.replace('name',episodeName);
-    
-        await this.currentDay.getText().then(function(day){
+        
+        await this.currentDay.getText().then(function(day){ 
             epDay=day;
-        });   
-          
+        });    
         return epDay.replace('\n',' ');
     }
 }
