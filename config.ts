@@ -2,6 +2,7 @@ import { ProtractorBrowser, Config } from 'protractor';
 
 export let config: Config = {
   // directConnect:true,
+  baseUrl: "https://www.bbc.co.uk",
   seleniumAddress: 'http://localhost:4444/wd/hub',
   capabilities: {
     'browserName': 'chrome'

@@ -25,6 +25,7 @@ describe('angularjs homepage todo list', function () {
     await searchPage.selectProgramByName(episodeName);    
     var episodeDetails = await progPage.getEpisodeDetails();
     await console.log('Next '+episodeName+' on: '+episodeDetails);
+   
     expect(episodeDetails).not.toBe('');
     expect(episodeDetails).toContain('BBC ONE');
   });
@@ -34,8 +35,10 @@ describe('angularjs homepage todo list', function () {
     const channelName:string = 'BBC One';
     const episodeName:string = 'EastEnders';
     var schedule:string[];
+  
     await homepage.selectOptionAs("TV");
     await programmePage.selectTvGuideOption();
+ 
     do{
       var isTelecasted: boolean = await guidePage.isEpisodeTelecastedToday(channelName,episodeName);
       if(isTelecasted)
@@ -45,6 +48,7 @@ describe('angularjs homepage todo list', function () {
    
     schedule = await guidePage.getFullScheduleDetails(episodeName);
     console.log('Next "'+episodeName+'" episode telecasted on "'+channelName+ '" @ '+schedule[0]+' on '+schedule[1]);
+  
     expect(schedule).not.toBe('');
   });
 
@@ -53,16 +57,20 @@ describe('angularjs homepage todo list', function () {
     const channelName:string = 'BBC One';
     const episodeName:string = 'EastEnders';
     var schedule:string[];
+
     await homepage.selectOptionAs("iPlayer");
     await programmePage.selectTvGuideOption();
+  
     do{
       var isTelecasted: boolean = await guidePage.isEpisodeTelecastedToday(channelName,episodeName);
       if(isTelecasted)
          break;
       await guidePage.selectNextDay(episodeName);  
      } while(!isTelecasted);
+    
      schedule = await guidePage.getFullScheduleDetails(episodeName);
      console.log('Next "'+episodeName+'" episode telecasted on "'+channelName+ '" @ '+schedule[0]+' on '+schedule[1]);
+   
      expect(schedule).not.toBe('');
   });
 });

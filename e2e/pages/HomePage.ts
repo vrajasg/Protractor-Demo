@@ -1,5 +1,6 @@
 import { browser} from "protractor";
 import { BasePage } from "./BasePage";
+import { config } from "../../config";
 
 export class HomePage extends BasePage{
     constructor() {
@@ -31,6 +32,6 @@ export class HomePage extends BasePage{
     public async openHomePage():Promise<void>{
         browser.waitForAngularEnabled(false);
         browser.ignoreSynchronisation = true;
-        await browser.get('https://www.bbc.co.uk');
+        await browser.get(config.baseUrl);
     }
 }
