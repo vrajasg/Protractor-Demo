@@ -1,4 +1,5 @@
 import { ProtractorBrowser, Config } from 'protractor';
+
 export let config: Config = {
   // directConnect:true,
   seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -6,6 +7,7 @@ export let config: Config = {
     'browserName': 'chrome'
     },
   framework: 'jasmine',
+  SELENIUM_PROMISE_MANAGER: false,
   specs: ['./e2e/specs/ProgScheduleTest.js'],
   jasmineNodeOpts: {
     defaultTimeoutInterval: 90000

@@ -13,10 +13,8 @@ describe('angularjs homepage todo list', function () {
   const progPage:ProgPage = new ProgPage();
   const guidePage:GuidePage = new GuidePage();
 
-  beforeEach(function() {
-    browser.waitForAngularEnabled(false);
-    browser.ignoreSynchronisation = true;
-    browser.get('https://www.bbc.co.uk');
+  beforeEach( async() =>{
+    await homepage.openHomePage();
   });
 
 

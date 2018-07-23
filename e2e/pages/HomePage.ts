@@ -27,4 +27,10 @@ export class HomePage extends BasePage{
         await this.searchLocator.sendKeys(value);
         await browser.sleep(5000);
     }
+
+    public async openHomePage():Promise<void>{
+        browser.waitForAngularEnabled(false);
+        browser.ignoreSynchronisation = true;
+        await browser.get('https://www.bbc.co.uk');
+    }
 }
